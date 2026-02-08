@@ -9,11 +9,6 @@
             Tarefas = new Stack<int>();
             TempoEstimado = 0;
         }
-        public Maquina(Stack<int> tarefas)
-        {
-            Tarefas = tarefas;
-            TempoEstimado = 0;
-        }
 
         public void AdicionarTarefa(int t)
         {
