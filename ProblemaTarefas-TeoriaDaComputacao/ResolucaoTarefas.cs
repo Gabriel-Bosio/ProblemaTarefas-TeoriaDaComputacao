@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace ProblemaTarefas_TeoriaDaComputacao
 {
@@ -14,6 +11,8 @@ namespace ProblemaTarefas_TeoriaDaComputacao
 
         private Maquina[] _maquinas = new Maquina[1];
 
+        private Maquina _maquinaMakespan = new Maquina();
+
         public ResolucaoTarefas(int tarefas, int maquinas)
         {
             Tempo = 0;
@@ -21,6 +20,7 @@ namespace ProblemaTarefas_TeoriaDaComputacao
             _maquinas = new Maquina[maquinas];
             for(int i = 0; i < maquinas; i++)
                 _maquinas[i] = new Maquina();
+            _maquinaMakespan = _maquinas[0];
 
             GerarTarefas(tarefas);
         }
@@ -34,9 +34,68 @@ namespace ProblemaTarefas_TeoriaDaComputacao
                 int t = rand.Next(1, 100);
                 _maquinas[0].AdicionarTarefa(t);
             }
-            MakespanInicial = _maquinas[0].TempoEstimado;
+            MakespanInicial = _maquinas[0].Makespan;
         } 
 
+        public void RedefineMaquinaMakespan()
+        {
+            Maquina? maquinaSpan = null;
+            foreach (var maquina in _maquinas)
+            {
+                if(maquinaSpan == null || maquina.Makespan > maquinaSpan.Makespan)
+                    maquinaSpan = maquina;
+            }
+            _maquinaMakespan = maquinaSpan!;
+        }
+
+        public Maquina? RetornarPrimeiroVizinho()
+        {
+            int i = _maquinas.IndexOf(_maquinaMakespan);
+            foreach (var maquina in _maquinas)
+            {
+                if ( maquina.Makespan + _maquinaMakespan.Tarefas.Peek() < _maquinaMakespan.Makespan)
+                    return maquina;
+            }
+            return null;
+        }
+
+        public Maquina? RetornarMelhorVizinho()
+        {
+            Maquina? melhorVizinho = null;
+            foreach (var maquina in _maquinas)
+            {
+                if (maquina.Makespan + _maquinaMakespan.Tarefas.Peek() < _maquinaMakespan.Makespan)
+                    if (melhorVizinho == null || maquina.Makespan < melhorVizinho.Makespan)
+                        melhorVizinho = maquina;
+            }
+            return melhorVizinho;
+        }
+
+        public void ExecutaPrimeiraEscolha()
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            bool continuar = true;
+
+            while (continuar)
+            {
+                Maquina? primeiraEscolha = RetornarPrimeiroVizinho();
+
+                if (primeiraEscolha != null)
+                {
+                    int tarefa = _maquinaMakespan.RetiraTarefa();
+                    primeiraEscolha!.AdicionarTarefa(tarefa);
+                    Iteracoes++;
+                    RedefineMaquinaMakespan();
+                }
+                else
+                {
+                    continuar = false;
+                    MakespanFinal = _maquinaMakespan.Makespan;
+                }
+            }
+            sw.Stop();
+            Tempo = sw.Elapsed.TotalMilliseconds;
+        }
 
         public void ExecutaMelhorEscolha()
         {
@@ -45,31 +104,23 @@ namespace ProblemaTarefas_TeoriaDaComputacao
 
             while (continuar)
             {
-                Maquina? maquinaSpan = null;
-                Maquina? melhorEscolha = null;
-                foreach (var maquina in _maquinas)
+                Maquina? melhorEscolha = RetornarMelhorVizinho();
+
+                if (melhorEscolha != null)
                 {
-                    if(maquinaSpan == null || maquina.TempoEstimado > maquinaSpan.TempoEstimado)
-                        maquinaSpan = maquina;
-                    
-                    if(melhorEscolha == null || maquina.TempoEstimado < melhorEscolha.TempoEstimado && !maquina.Equals(maquinaSpan))
-                        melhorEscolha = maquina;
-                }
-         
-                if(maquinaSpan!.Tarefas.Count > 0 && melhorEscolha!.TempoEstimado + maquinaSpan.Tarefas.Peek() < maquinaSpan.TempoEstimado)
-                {
-                    int tarefa = maquinaSpan.RetiraTarefa();
+                    int tarefa = _maquinaMakespan.RetiraTarefa();
                     melhorEscolha!.AdicionarTarefa(tarefa);
                     Iteracoes++;
+                    RedefineMaquinaMakespan();
                 }
                 else
                 {
                     continuar = false;
-                    MakespanFinal = maquinaSpan.TempoEstimado;
+                    MakespanFinal = _maquinaMakespan.Makespan;
                 }
             }
             sw.Stop();
-            Tempo = sw.Elapsed.TotalMicroseconds;
+            Tempo = sw.Elapsed.TotalMilliseconds;
         }
     }
 }
