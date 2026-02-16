@@ -15,7 +15,8 @@ namespace ProblemaTarefas_TeoriaDaComputacao
         public static void Executar()
         {
             Random rand = new Random();
-            string caminhoSalvamento = @"C:\Projetos\Teoria da Computação\Resultados_Tarefas"; //Preencher com o caminho de salvamento desejado
+            string raizProjeto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;
+            string caminhoSalvamento = Path.Combine(raizProjeto, "Resultados\\Resultados_Tarefas"); // Caminho para salvar os resultados
             Directory.CreateDirectory(caminhoSalvamento);
             string nomeArquivo = $"Resultado_{DateTime.Now:dd_MM_yyyy_HH_mm}.txt";
             string caminhoCompleto = Path.Combine(caminhoSalvamento, nomeArquivo);

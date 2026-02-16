@@ -1,0 +1,39 @@
+﻿Heurística, n, m, replicação, tempo, iterações, makespan inicial, makespan final, parametro
+
+Monótona primeira escolha, 2500, 50, 0, 63,4027 ms, 73704, 122172, 2448, NA
+Monótona primeira escolha, 31, 10, 1, 0,0338 ms, 99, 1656, 183, NA
+Monótona primeira escolha, 100, 10, 2, 0,1377 ms, 474, 5198, 533, NA
+Monótona primeira escolha, 400, 20, 3, 1,4706 ms, 3872, 19472, 983, NA
+Monótona primeira escolha, 2500, 50, 4, 58,3155 ms, 73156, 124812, 2505, NA
+Monótona primeira escolha, 2500, 50, 5, 62,0617 ms, 77951, 125215, 2510, NA
+Monótona primeira escolha, 400, 20, 6, 4,4625 ms, 4223, 18804, 949, NA
+Monótona primeira escolha, 400, 20, 7, 2,3517 ms, 4420, 20169, 1020, NA
+Monótona primeira escolha, 2500, 50, 8, 102,282 ms, 68763, 125464, 2514, NA
+Monótona primeira escolha, 89, 20, 9, 0,3884 ms, 640, 4679, 250, NA
+Monótona primeira escolha, 89, 20, 10, 0,2561 ms, 599, 4150, 215, NA
+
+
+Monótona melhor escolha, 2500, 50, 0, 4,0445 ms, 2454, 126653, 2588, NA
+Monótona melhor escolha, 31, 10, 1, 0,0104 ms, 30, 1360, 173, NA
+Monótona melhor escolha, 353, 50, 2, 0,4049 ms, 346, 17412, 393, NA
+Monótona melhor escolha, 31, 10, 3, 0,0091 ms, 27, 1466, 198, NA
+Monótona melhor escolha, 89, 20, 4, 0,0511 ms, 86, 4099, 255, NA
+Monótona melhor escolha, 100, 10, 5, 0,0508 ms, 88, 4800, 512, NA
+Monótona melhor escolha, 31, 10, 6, 0,0104 ms, 30, 1613, 208, NA
+Monótona melhor escolha, 400, 20, 7, 0,1892 ms, 379, 20730, 1082, NA
+Monótona melhor escolha, 89, 20, 8, 0,0394 ms, 86, 4974, 297, NA
+Monótona melhor escolha, 353, 50, 9, 0,4066 ms, 349, 17115, 389, NA
+Monótona melhor escolha, 2500, 50, 10, 2,4198 ms, 2448, 125163, 2562, NA
+
+
+BLM randomizada, 100, 10, 0, 0,4035 ms, 1099, 4859, 521, 0,4
+BLM randomizada, 31, 10, 1, 0,1441 ms, 1030, 1556, 169, 0,5
+BLM randomizada, 31, 10, 2, 0,166 ms, 1027, 1680, 214, 0,5
+BLM randomizada, 100, 10, 3, 0,3417 ms, 1097, 5148, 550, 0,9
+BLM randomizada, 400, 20, 4, 0,5794 ms, 1377, 18776, 987, 0,4
+BLM randomizada, 89, 20, 5, 0,3956 ms, 1089, 4548, 264, 0,4
+BLM randomizada, 31, 10, 6, 0,1949 ms, 1030, 1645, 186, 0,2
+BLM randomizada, 400, 20, 7, 0,4416 ms, 1387, 19030, 1001, 0,4
+BLM randomizada, 89, 20, 8, 0,3259 ms, 1123, 4636, 275, 0,9
+BLM randomizada, 2500, 50, 9, 3,4153 ms, 3453, 125123, 2564, 0,1
+BLM randomizada, 31, 10, 10, 0,1587 ms, 1028, 1760, 213, 0,2
